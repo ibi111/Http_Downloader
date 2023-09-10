@@ -24,11 +24,11 @@ class threadForDownloading(threading.Thread):
 
       bytesDownloaded=0
 
-      exists = os.path.isfile('C:\\Users\\ibi\\Desktop\\cnProject\\PRACTICE_NO_OF_BYTES_WRITTEN by THREAD '+str(self.threadNumber)+'.txt')
+      exists = os.path.isfile('C:\\Users\\Furqan\\Desktop\\cnProject\\PRACTICE_NO_OF_BYTES_WRITTEN by THREAD '+str(self.threadNumber)+'.txt')
 
       if exists:
 
-          f=open("C:\\Users\\ibi\\Desktop\\cnProject\\PRACTICE_NO_OF_BYTES_WRITTEN by THREAD"+str(self.threadNumber)+".txt","r+")
+          f=open("C:\\Users\\ibi\\Desktop\\Furqan\\PRACTICE_NO_OF_BYTES_WRITTEN by THREAD"+str(self.threadNumber)+".txt","r+")
 
           if self.resume==False:
               bytesDownloaded=0
@@ -39,7 +39,7 @@ class threadForDownloading(threading.Thread):
 
       else:
 
-          f=open("C:\\Users\\ibi\\Desktop\\cnProject\\PRACTICE_NO_OF_BYTES_WRITTEN by THREAD"+str(self.threadNumber)+".txt","w+")
+          f=open("C:\\Users\\Furqan\\Desktop\\cnProject\\PRACTICE_NO_OF_BYTES_WRITTEN by THREAD"+str(self.threadNumber)+".txt","w+")
 
           f.seek(0)
           f.write('0')
@@ -58,7 +58,7 @@ class threadForDownloading(threading.Thread):
 
       print("\nStarting Thread\n")
 
-      filenameToDownloadTo="C:\\Users\\Tarmah\\Desktop\\cnProject\\test"+str(self.threadNumber)+".txt"
+      filenameToDownloadTo="C:\\Users\\Furqan\\Desktop\\cnProject\\test"+str(self.threadNumber)+".txt"
 
       self.startingByte += bytesDownloaded
 

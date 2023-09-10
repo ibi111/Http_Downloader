@@ -3,6 +3,7 @@ import sys
 import re
 
 BUFFER_SIZE=100000
+PORT=80
 
 
 def getContentLength(Host,directory):
@@ -14,11 +15,11 @@ def getContentLength(Host,directory):
     socketHeader=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     requestHeader="HEAD "+directory+" HTTP/1.1\r\nHost:"+Host+":80\r\n\r\n"
 
-    socketHeader.connect((Host,80))
+    socketHeader.connect((Host,PORT))
 
     socketHeader.send(requestHeader.encode('utf-8'))
 
-    data = socketHeader.recv(100000)
+    data = socketHeader.recv(BUFFER_SIZE)
 
     text = data.decode()
 
@@ -29,31 +30,22 @@ def getContentLength(Host,directory):
     socketHeader.close()
 
     return contentLength
-def readCommandLineArguments():
-    if len(sys.argv) == 10:
-        if sys.argv[1] == '-r':
-            resume_status=True
-
-        num_of_connections=int(sys.argv[3])
-        time=int(sys.argv[5])
-        Host=str(sys.argv[7].split("/", 1)[0])
-        Directory="/"+str(sys.argv[7].split("/", 1)[1])
-        FilePathToDownloadTo=str(sys.argv[9])
-
+def readCommandLineArguments(command):
+    """
+    
+    :param command: list of arguments
+    :ret
+    """
+    if command[0] != ""  and command[1] !="":
+        resume_status=True
+        num_of_connections=5
+        time=1
+        Host=command[1].split("/",1)[0]
+        Directory= "/"+str(command[1].split("/", 1)[1])
+        FilePathToDownloadTo=str(command[0])
         return resume_status,num_of_connections,time,Host,Directory,FilePathToDownloadTo
-
-    elif len(sys.argv) == 9:
-        resume_status=False
-        num_of_connections=int(sys.argv[2])
-        time=int(sys.argv[4])
-        Host=str(sys.argv[6].split("/", 1)[0])
-        Directory="/"+str(sys.argv[6].split("/", 1)[1])
-        FilePathToDownloadTo=str(sys.argv[8])
-
-        return resume_status,num_of_connections,time,Host,Directory,FilePathToDownloadTo
-
     else:
-        print("Command line arguments not right")
+        print("url not correct!")
         sys.exit(0)
 
 def combineData(NUMBER_OF_THREADS,RESUMING_STATUS,FILE_LOCATION):
