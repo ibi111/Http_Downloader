@@ -60,7 +60,7 @@ class UI:
         messagebox.showinfo("Download Started", "Download will start shortly ")
 
 # Create the main window
-if __name__ == "__main__":
-    test = UI()
-    params = test.get_inputs()
-    print(params)
+# if __name__ == "__main__":
+#     test = UI()
+#     params = test.get_inputs()
+#     print(params)
